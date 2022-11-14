@@ -21,6 +21,12 @@ public class GsonWorker {
         gson = new Gson();
     }
 
+/*    public <T> ArrayList<Object> jsonToObj(Path path) {
+        String json = readJson(path);
+        Type type = new TypeToken<ArrayList<T>>(){}.getType();
+        return gson.fromJson(json, type);
+    }*/
+
     public ArrayList<User> jsonToUsers(Path path) {
         String json = readJson(path);
         Type type = new TypeToken<ArrayList<User>>() {
@@ -32,6 +38,13 @@ public class GsonWorker {
         Type type = new TypeToken<ArrayList<User>>() {
         }.getType();
         String json = gson.toJson(users, type);
+        writeJson(json, path);
+    }
+
+    public <T> void objToJson(ArrayList<T> objects, Path path) {
+        Type type = new TypeToken<ArrayList<T>>() {
+        }.getType();
+        String json = gson.toJson(objects, type);
         writeJson(json, path);
     }
 

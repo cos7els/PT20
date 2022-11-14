@@ -93,6 +93,7 @@ class ImportMenu extends SuperMenu {
             }
         } catch (Exception e) {
             System.out.println("Exception in ImportMenu.jsonImportMenu()");
+            e.printStackTrace();
         }
     }
 

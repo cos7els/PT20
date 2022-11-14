@@ -50,7 +50,7 @@ public class Post {
 
     @Override
     public String toString() {
-        return String.format("Post { id = %d, user id = %d, \ntitle = %s, \nbody = %s }", id, userId, title, body);
+        return String.format("Post { id = %d, user id = %d, \ntitle = %s, \nbody = %s }W", id, userId, title, body);
     }
 
     public static class Builder {

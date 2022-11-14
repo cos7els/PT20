@@ -59,7 +59,8 @@ class ExportMenu extends SuperMenu {
                     ArrayList<User> users = dbWorker.getUsers();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-                    gsonWorker.usersToJson(users, path);
+//                    gsonWorker.usersToJson(users, path);
+                    gsonWorker.objToJson(users, path);
                 }
                 case "2" -> {
                     ArrayList<Post> posts = dbWorker.getPosts();
