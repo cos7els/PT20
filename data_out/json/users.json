@@ -228,5 +228,28 @@
       "catchPhrase": "Centralized empowering task-force",
       "bs": "target end-to-end models"
     }
+  },
+  {
+    "id": 11,
+    "name": "Aleks",
+    "username": "cos7els",
+    "email": "cos7els@gmail.com",
+    "address": {
+      "street": "Krynicka",
+      "suite": "4",
+      "city": "Gdansk",
+      "zipcode": "895302",
+      "geo": {
+        "lat": "0",
+        "lng": "0"
+      }
+    },
+    "phone": "+375292502488",
+    "website": "cos7els.com",
+    "company": {
+      "name": "Nokia",
+      "catchPhrase": "Connecting People",
+      "bs": "Telecom"
+    }
   }
 ]

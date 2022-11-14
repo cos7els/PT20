@@ -138,7 +138,7 @@ class ExportMenu extends SuperMenu {
                 case "5" -> {
                     Photos photos = new Photos(dbWorker.getPhotos());
                     String stringPath = supporter.readPath();
-                    Path path = supporter.checkWriteFile(stringPath, ".json");
+                    Path path = supporter.checkWriteFile(stringPath, ".xml");
                     jaxbWorker.photosToXml(photos, path);
                 }
                 case "0" -> {

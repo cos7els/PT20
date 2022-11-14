@@ -36,7 +36,7 @@ class ImportMenu extends SuperMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ImportMenu.importMainMenu()");
         }
     }
 
@@ -92,7 +92,7 @@ class ImportMenu extends SuperMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ImportMenu.jsonImportMenu()");
         }
     }
 
@@ -148,7 +148,7 @@ class ImportMenu extends SuperMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ImportMenu.xmlImportMenu()");
         }
     }
 
