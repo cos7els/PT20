@@ -1,10 +1,8 @@
 package classes.workers.cli;
 
-import classes.data.Album;
-import classes.data.Comment;
-import classes.data.Photo;
-import classes.data.Post;
+import classes.data.*;
 import classes.data.user.User;
+import classes.data.user.Users;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -117,31 +115,31 @@ class ImportMenu extends SuperMenu {
                 case "1" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".xml");
-                    ArrayList<User> users = jaxbWorker.xmlToUsers(path);
+                    ArrayList<User> users = jaxbWorker.xmlToObj(new Users(), path).getUser();
                     dbWorker.addUsers(users);
                 }
                 case "2" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".xml");
-                    ArrayList<Post> posts = jaxbWorker.xmlToPosts(path);
+                    ArrayList<Post> posts = jaxbWorker.xmlToObj(new Posts(), path).getPost();
                     dbWorker.addPosts(posts);
                 }
                 case "3" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".xml");
-                    ArrayList<Comment> comments = jaxbWorker.xmlToComments(path);
+                    ArrayList<Comment> comments = jaxbWorker.xmlToObj(new Comments(), path).getComment();
                     dbWorker.addComments(comments);
                 }
                 case "4" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".xml");
-                    ArrayList<Album> albums = jaxbWorker.xmlToAlbums(path);
+                    ArrayList<Album> albums = jaxbWorker.xmlToObj(new Albums(), path).getAlbum();
                     dbWorker.addAlbums(albums);
                 }
                 case "5" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".xml");
-                    ArrayList<Photo> photos = jaxbWorker.xmlToPhotos(path);
+                    ArrayList<Photo> photos = jaxbWorker.xmlToObj(new Photos(), path).getPhoto();
                     dbWorker.addPhotos(photos);
                 }
                 case "0" -> {

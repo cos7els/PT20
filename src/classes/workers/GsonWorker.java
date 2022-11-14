@@ -21,31 +21,11 @@ public class GsonWorker {
         gson = new Gson();
     }
 
-/*    public <T> ArrayList<Object> jsonToObj(Path path) {
-        String json = readJson(path);
-        Type type = new TypeToken<ArrayList<T>>(){}.getType();
-        return gson.fromJson(json, type);
-    }*/
-
     public ArrayList<User> jsonToUsers(Path path) {
         String json = readJson(path);
         Type type = new TypeToken<ArrayList<User>>() {
         }.getType();
         return gson.fromJson(json, type);
-    }
-
-    public void usersToJson(ArrayList<User> users, Path path) {
-        Type type = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        String json = gson.toJson(users, type);
-        writeJson(json, path);
-    }
-
-    public <T> void objToJson(ArrayList<T> objects, Path path) {
-        Type type = new TypeToken<ArrayList<T>>() {
-        }.getType();
-        String json = gson.toJson(objects, type);
-        writeJson(json, path);
     }
 
     public ArrayList<Post> jsonToPosts(Path path) {
@@ -55,25 +35,11 @@ public class GsonWorker {
         return gson.fromJson(json, type);
     }
 
-    public void postsToJson(ArrayList<Post> posts, Path path) {
-        Type type = new TypeToken<ArrayList<Post>>() {
-        }.getType();
-        String json = gson.toJson(posts, type);
-        writeJson(json, path);
-    }
-
     public ArrayList<Comment> jsonToComments(Path path) {
         String json = readJson(path);
         Type type = new TypeToken<ArrayList<Comment>>() {
         }.getType();
         return gson.fromJson(json, type);
-    }
-
-    public void commentsToJson(ArrayList<Comment> comments, Path path) {
-        Type type = new TypeToken<ArrayList<Comment>>() {
-        }.getType();
-        String json = gson.toJson(comments, type);
-        writeJson(json, path);
     }
 
     public ArrayList<Album> jsonToAlbums(Path path) {
@@ -83,13 +49,6 @@ public class GsonWorker {
         return gson.fromJson(json, type);
     }
 
-    public void albumsToJson(ArrayList<Album> albums, Path path) {
-        Type type = new TypeToken<ArrayList<Album>>() {
-        }.getType();
-        String json = gson.toJson(albums, type);
-        writeJson(json, path);
-    }
-
     public ArrayList<Photo> jsonToPhotos(Path path) {
         String json = readJson(path);
         Type type = new TypeToken<ArrayList<Photo>>() {
@@ -97,10 +56,10 @@ public class GsonWorker {
         return gson.fromJson(json, type);
     }
 
-    public void photosToJson(ArrayList<Photo> photos, Path path) {
-        Type type = new TypeToken<ArrayList<Photo>>() {
+    public <T> void objToJson(ArrayList<T> objects, Path path) {
+        Type type = new TypeToken<ArrayList<T>>() {
         }.getType();
-        String json = gson.toJson(photos, type);
+        String json = gson.toJson(objects, type);
         writeJson(json, path);
     }
 

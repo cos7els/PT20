@@ -59,32 +59,31 @@ class ExportMenu extends SuperMenu {
                     ArrayList<User> users = dbWorker.getUsers();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-//                    gsonWorker.usersToJson(users, path);
                     gsonWorker.objToJson(users, path);
                 }
                 case "2" -> {
                     ArrayList<Post> posts = dbWorker.getPosts();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-                    gsonWorker.postsToJson(posts, path);
+                    gsonWorker.objToJson(posts, path);
                 }
                 case "3" -> {
                     ArrayList<Comment> comments = dbWorker.getComments();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-                    gsonWorker.commentsToJson(comments, path);
+                    gsonWorker.objToJson(comments, path);
                 }
                 case "4" -> {
                     ArrayList<Album> albums = dbWorker.getAlbums();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-                    gsonWorker.albumsToJson(albums, path);
+                    gsonWorker.objToJson(albums, path);
                 }
                 case "5" -> {
                     ArrayList<Photo> photos = dbWorker.getPhotos();
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".json");
-                    gsonWorker.photosToJson(photos, path);
+                    gsonWorker.objToJson(photos, path);
                 }
                 case "0" -> {
                 }
@@ -116,31 +115,31 @@ class ExportMenu extends SuperMenu {
                     Users users = new Users(dbWorker.getUsers());
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".xml");
-                    jaxbWorker.usersToXml(users, path);
+                    jaxbWorker.objToXml(users, path);
                 }
                 case "2" -> {
                     Posts posts = new Posts(dbWorker.getPosts());
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".xml");
-                    jaxbWorker.postsToXml(posts, path);
+                    jaxbWorker.objToXml(posts, path);
                 }
                 case "3" -> {
                     Comments comments = new Comments(dbWorker.getComments());
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".xml");
-                    jaxbWorker.commentsToXml(comments, path);
+                    jaxbWorker.objToXml(comments, path);
                 }
                 case "4" -> {
                     Albums albums = new Albums(dbWorker.getAlbums());
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".xml");
-                    jaxbWorker.albumsToXml(albums, path);
+                    jaxbWorker.objToXml(albums, path);
                 }
                 case "5" -> {
                     Photos photos = new Photos(dbWorker.getPhotos());
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkWriteFile(stringPath, ".xml");
-                    jaxbWorker.photosToXml(photos, path);
+                    jaxbWorker.objToXml(photos, path);
                 }
                 case "0" -> {
                 }
