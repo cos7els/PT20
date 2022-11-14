@@ -16,7 +16,6 @@ public class DBWorker {
 
     public DBWorker() {
         dbUrl = "jdbc:sqlite:project.db";
-//        dbUrl = "jdbc:sqlite:D:\\DBs\\project.db";
         supporter = new Supporter();
     }
 
@@ -138,6 +137,81 @@ public class DBWorker {
                 .catchPhrase(supporter.readClassData("catch phrase", className))
                 .bs(supporter.readClassData("bs", className))
                 .build();
+    }
+
+    public User getUser(String userName) {
+        return getUser(getUserId(userName));
+    }
+
+    public User getUser(int userId) {
+        User user = null;
+        try (Connection connection = DriverManager.getConnection(dbUrl);
+             PreparedStatement select = connection.prepareStatement("SELECT * FROM Users WHERE UserId = ?")) {
+            select.setInt(1, userId);
+            ResultSet set = select.executeQuery();
+            while (set.next()) {
+                user = createUser(set);
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException in DBWorker.getUser()");
+        }
+        return user;
+    }
+
+    private int getUserId(String name) {
+        int userId = -1;
+        try (Connection connection = DriverManager.getConnection(dbUrl);
+             PreparedStatement select = connection.prepareStatement("SELECT UserId, Name FROM Users WHERE Name = ?")) {
+            select.setString(1, name);
+            ResultSet set = select.executeQuery();
+            if (set.next()) {
+                userId = set.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("SQLException in DBWorker.getUserId()");
+        }
+        return userId;
+    }
+
+    private User createUser(ResultSet set) {
+        User user = null;
+        try {
+            user = new User.Builder().id(set.getInt(1)).name(set.getString(2))
+                    .username(set.getString(3)).email(set.getString(4))
+                    .street(set.getString(5)).suite(set.getString(6))
+                    .city(set.getString(7)).zipcode(set.getString(8))
+                    .lat(set.getString(9)).lng(set.getString(10))
+                    .phone(set.getString(11)).website(set.getString(12))
+                    .companyName(set.getString(13)).catchPhrase(set.getString(14))
+                    .bs(set.getString(15)).build();
+        } catch (SQLException e) {
+            System.out.println("SQLException in DBWorker.createUser");
+        }
+        return user;
+    }
+
+    public ArrayList<User> getUsers() {
+        ArrayList<User> users = new ArrayList<>();
+        try (Connection connection = DriverManager.getConnection(dbUrl);
+             PreparedStatement select = connection.prepareStatement("SELECT * FROM Users")) {
+            ResultSet set = select.executeQuery();
+            while (set.next()) {
+                users.add(createUser(set));
+            }
+        } catch (SQLException e) {
+            System.out.println("SQLException in DBWorker.getUsers()");
+        }
+        return users;
+    }
+
+    public Address getAddress(int userId) {
+        return getUser(userId).getAddress();
+
+    }
+
+    public Address getAddress(String name) {
+        int userId = getUserId(name);
+        return getAddress(userId);
     }
 
     public void addPost() {
@@ -269,7 +343,7 @@ public class DBWorker {
         try (Connection connection = DriverManager.getConnection(dbUrl);
              PreparedStatement update = connection.prepareStatement(
                      "UPDATE Comments SET PostId = ?, Name = ?, Email = ?, Body = ? WHERE CommentId = ?")) {
-            stmtCommentSetter(update, updComment, 5, 1 );
+            stmtCommentSetter(update, updComment, 5, 1);
             update.execute();
         } catch (SQLException e) {
             System.out.println("SQLException in DBWorker.updateComment()");
@@ -446,34 +520,6 @@ public class DBWorker {
                 .thumbnailUrl(supporter.readClassData("thumbnail url", className)).build();
     }
 
-    public User getUser(String userName) {
-        return getUser(getUserId(userName));
-    }
-
-    public User getUser(int userId) {
-        User user = null;
-        try (Connection connection = DriverManager.getConnection(dbUrl);
-             PreparedStatement select = connection.prepareStatement("SELECT * FROM Users WHERE UserId = ?")) {
-            select.setInt(1, userId);
-            ResultSet set = select.executeQuery();
-            while (set.next()) {
-                user = createUser(set);
-            }
-        } catch (SQLException e) {
-            System.out.println("SQLException in DBWorker.getUser()");
-        }
-        return user;
-    }
-
-    public Address getAddress(String name) {
-        int userId = getUserId(name);
-        return getAddress(userId);
-    }
-
-    public Address getAddress(int userId) {
-        return getUser(userId).getAddress();
-
-    }
 
     public Post getPost(int postId) {
         Post post = null;
@@ -565,10 +611,6 @@ public class DBWorker {
         return comments;
     }
 
-    public ArrayList<Post> selectPosts(String userName) {
-        return selectPosts(getUserId(userName));
-    }
-
     public ArrayList<Post> selectPosts(int userId) {
         ArrayList<Post> posts = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(dbUrl);
@@ -584,18 +626,8 @@ public class DBWorker {
         return posts;
     }
 
-    public ArrayList<User> getUsers() {
-        ArrayList<User> users = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(dbUrl);
-             PreparedStatement select = connection.prepareStatement("SELECT * FROM Users")) {
-            ResultSet set = select.executeQuery();
-            while (set.next()) {
-                users.add(createUser(set));
-            }
-        } catch (SQLException e) {
-            System.out.println("SQLException in DBWorker.getUsers()");
-        }
-        return users;
+    public ArrayList<Post> selectPosts(String userName) {
+        return selectPosts(getUserId(userName));
     }
 
     public ArrayList<Post> getPosts() {
@@ -662,37 +694,6 @@ public class DBWorker {
         return photos;
     }
 
-    private int getUserId(String name) {
-        int userId = -1;
-        try (Connection connection = DriverManager.getConnection(dbUrl);
-             PreparedStatement select = connection.prepareStatement("SELECT UserId, Name FROM Users WHERE Name = ?")) {
-            select.setString(1, name);
-            ResultSet set = select.executeQuery();
-            if (set.next()) {
-                userId = set.getInt(1);
-            }
-        } catch (SQLException ex) {
-            System.out.println("SQLException in DBWorker.getUserId()");
-        }
-        return userId;
-    }
-
-    private User createUser(ResultSet set) {
-        User user = null;
-        try {
-            user = new User.Builder().id(set.getInt(1)).name(set.getString(2))
-                    .username(set.getString(3)).email(set.getString(4))
-                    .street(set.getString(5)).suite(set.getString(6))
-                    .city(set.getString(7)).zipcode(set.getString(8))
-                    .lat(set.getString(9)).lng(set.getString(10))
-                    .phone(set.getString(11)).website(set.getString(12))
-                    .companyName(set.getString(13)).catchPhrase(set.getString(14))
-                    .bs(set.getString(15)).build();
-        } catch (SQLException e) {
-            System.out.println("SQLException in DBWorker.createUser");
-        }
-        return user;
-    }
 
     private Post createPost(ResultSet set) {
         Post post = null;
