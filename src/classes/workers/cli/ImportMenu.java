@@ -1,23 +1,18 @@
 package classes.workers.cli;
 
-import classes.data.*;
-import classes.data.user.*;
-import classes.workers.*;
+import classes.data.Album;
+import classes.data.Comment;
+import classes.data.Photo;
+import classes.data.Post;
+import classes.data.user.User;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-class ImportMenu {
-    private final DBWorker dbWorker;
-    private final GsonWorker gsonWorker;
-    private final JAXBWorker jaxbWorker;
-    private final Supporter supporter;
+class ImportMenu extends SuperMenu {
 
     ImportMenu() {
-        dbWorker = new DBWorker();
-        gsonWorker = new GsonWorker();
-        jaxbWorker = new JAXBWorker();
-        supporter = new Supporter();
+        super();
     }
 
     void importMainMenu() {
@@ -36,7 +31,8 @@ class ImportMenu {
             switch (read) {
                 case "1" -> jsonImportMenu();
                 case "2" -> xmlImportMenu();
-                case "0" -> {}
+                case "0" -> {
+                }
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
@@ -147,7 +143,8 @@ class ImportMenu {
                     ArrayList<Photo> photos = jaxbWorker.xmlToPhotos(path);
                     dbWorker.addPhotos(photos);
                 }
-                case "0" -> {}
+                case "0" -> {
+                }
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {

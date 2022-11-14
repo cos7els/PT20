@@ -3,22 +3,14 @@ package classes.workers.cli;
 import classes.data.*;
 import classes.data.user.User;
 import classes.data.user.Users;
-import classes.workers.*;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-class ExportMenu {
-    private final DBWorker dbWorker;
-    private final GsonWorker gsonWorker;
-    private final JAXBWorker jaxbWorker;
-    private final Supporter supporter;
+class ExportMenu extends SuperMenu {
 
     ExportMenu() {
-        dbWorker = new DBWorker();
-        gsonWorker = new GsonWorker();
-        jaxbWorker = new JAXBWorker();
-        supporter = new Supporter();
+        super();
     }
 
     void exportMainMenu() {
@@ -42,7 +34,7 @@ class ExportMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ExportMenu.exportMainMenu()");
         }
     }
 
@@ -98,7 +90,7 @@ class ExportMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ExportMenu.jsonExportMenu()");
         }
     }
 
@@ -154,7 +146,7 @@ class ExportMenu {
                 default -> System.out.printf("'%s' is incorrect value, try again\n", read);
             }
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in ExportMenu.xmlExportMenu()");
         }
     }
 

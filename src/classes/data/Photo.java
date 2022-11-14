@@ -60,7 +60,7 @@ public class Photo {
 
     @Override
     public String toString() {
-        return String.format("Photo { id = %d, album Id = %d, \ntitle = %s, \nurl = %s, \nthumbnail url = %s}\n",
+        return String.format("Photo { id = %d, album Id = %d, \ntitle = %s, \nurl = %s, \nthumbnail url = %s}",
                 id, albumId, title, url, thumbnailUrl);
     }
 

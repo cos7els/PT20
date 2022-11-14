@@ -40,7 +40,7 @@ public class Album {
 
     @Override
     public String toString() {
-        return String.format("Album { id = %d, user Id = %d, \ntitle = %s }\n", id, userId, title);
+        return String.format("Album { id = %d, user Id = %d, \ntitle = %s }", id, userId, title);
     }
 
     public static class Builder {

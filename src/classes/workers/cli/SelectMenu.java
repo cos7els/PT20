@@ -1,14 +1,9 @@
 package classes.workers.cli;
 
-import classes.workers.DBWorker;
-
-class SelectMenu {
-    private final DBWorker dbWorker;
-    private final Supporter supporter;
+class SelectMenu extends SuperMenu {
 
     public SelectMenu() {
-        dbWorker = new DBWorker();
-        supporter = new Supporter();
+        super();
     }
 
     void selectMainMenu() {

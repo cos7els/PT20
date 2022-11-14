@@ -60,7 +60,7 @@ public class Comment {
 
     @Override
     public String toString() {
-        return String.format("Comment { id = %d, post Id = %d, \nname = %s, email = %s, \nbody = %s }\n",
+        return String.format("Comment { id = %d, post Id = %d, \nname = %s, email = %s, \nbody = %s }",
                 id, postId, name, email, body);
     }
 

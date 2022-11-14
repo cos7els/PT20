@@ -1,6 +1,5 @@
 package classes.workers.cli;
 
-
 public class MainMenu {
     private final Supporter supporter;
     private final ImportMenu importMenu;
@@ -8,7 +7,7 @@ public class MainMenu {
     private final SelectMenu selectMenu;
     private final ModifyMenu modifyMenu;
 
-    private MainMenu() {
+    MainMenu() {
         supporter = new Supporter();
         importMenu = new ImportMenu();
         exportMenu = new ExportMenu();
@@ -51,7 +50,7 @@ public class MainMenu {
                 }
             } while (!read.equalsIgnoreCase("0"));
         } catch (Exception e) {
-            System.out.println("WRONG");
+            System.out.println("Exception in MainMenu.mainMenu()");
         }
     }
 
