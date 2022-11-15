@@ -3,7 +3,9 @@ package classes.workers.cli;
 import classes.data.*;
 import classes.data.user.User;
 import classes.data.user.Users;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
@@ -58,31 +60,41 @@ class ImportMenu extends SuperMenu {
                 case "1" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".json");
-                    ArrayList<User> users = gsonWorker.jsonToUsers(path);
+                    Type type = new TypeToken<ArrayList<User>>() {
+                    }.getType();
+                    ArrayList<User> users = gsonWorker.jsonToObj(type, path);
                     dbWorker.addUsers(users);
                 }
                 case "2" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".json");
-                    ArrayList<Post> posts = gsonWorker.jsonToPosts(path);
+                    Type type = new TypeToken<ArrayList<Post>>() {
+                    }.getType();
+                    ArrayList<Post> posts = gsonWorker.jsonToObj(type, path);
                     dbWorker.addPosts(posts);
                 }
                 case "3" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".json");
-                    ArrayList<Comment> comments = gsonWorker.jsonToComments(path);
+                    Type type = new TypeToken<ArrayList<Comment>>() {
+                    }.getType();
+                    ArrayList<Comment> comments = gsonWorker.jsonToObj(type, path);
                     dbWorker.addComments(comments);
                 }
                 case "4" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".json");
-                    ArrayList<Album> albums = gsonWorker.jsonToAlbums(path);
+                    Type type = new TypeToken<ArrayList<Album>>() {
+                    }.getType();
+                    ArrayList<Album> albums = gsonWorker.jsonToObj(type, path);
                     dbWorker.addAlbums(albums);
                 }
                 case "5" -> {
                     String stringPath = supporter.readPath();
                     Path path = supporter.checkReadFile(stringPath, ".json");
-                    ArrayList<Photo> photos = gsonWorker.jsonToPhotos(path);
+                    Type type = new TypeToken<ArrayList<Photo>>() {
+                    }.getType();
+                    ArrayList<Photo> photos = gsonWorker.jsonToObj(type, path);
                     dbWorker.addPhotos(photos);
                 }
                 case "0" -> {

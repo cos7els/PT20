@@ -1,10 +1,5 @@
 package classes.workers;
 
-import classes.data.Album;
-import classes.data.Comment;
-import classes.data.Photo;
-import classes.data.Post;
-import classes.data.user.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -21,38 +16,8 @@ public class GsonWorker {
         gson = new Gson();
     }
 
-    public ArrayList<User> jsonToUsers(Path path) {
+    public <T> ArrayList<T> jsonToObj(Type type, Path path) {
         String json = readJson(path);
-        Type type = new TypeToken<ArrayList<User>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public ArrayList<Post> jsonToPosts(Path path) {
-        String json = readJson(path);
-        Type type = new TypeToken<ArrayList<Post>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public ArrayList<Comment> jsonToComments(Path path) {
-        String json = readJson(path);
-        Type type = new TypeToken<ArrayList<Comment>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public ArrayList<Album> jsonToAlbums(Path path) {
-        String json = readJson(path);
-        Type type = new TypeToken<ArrayList<Album>>() {
-        }.getType();
-        return gson.fromJson(json, type);
-    }
-
-    public ArrayList<Photo> jsonToPhotos(Path path) {
-        String json = readJson(path);
-        Type type = new TypeToken<ArrayList<Photo>>() {
-        }.getType();
         return gson.fromJson(json, type);
     }
 
